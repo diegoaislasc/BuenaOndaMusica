@@ -93,9 +93,7 @@ def update_album(db: Session, album_id: int, album_data: AlbumCreate) -> Type[Al
 # SONG ----------------------------------------------------------
 def create_song(db: Session, song: SongCreate):
     existing = db.query(Song).filter(
-        (Song.title == song.title) |
-        (Song.id == song.id.id)
-    ).first()
+        (Song.title == song.title)).first()
 
     if existing:
         return None
@@ -139,7 +137,7 @@ def delete_song(db: Session, song_id: int) -> Type[Song] | None:
 # PRODUCER ----------------------------------------------------------
 def create_producer(db: Session, producer: ProducerCreate) -> Producer:
     existing = db.query(Producer).filter(
-        Producer.id == producer.id
+        Producer.name == producer.name
     ).first()
 
     if existing:
@@ -182,7 +180,7 @@ def delete_producer(db: Session, producer_id: int) -> Type[Producer] | None:
 # SONGWRITER ----------------------------------------------------------
 def create_songwriter(db: Session, songwriter: SongwriterCreate) -> Songwriter:
     existing = db.query(Songwriter).filter(
-        Songwriter.id == songwriter.id
+        Songwriter.name == songwriter.name
     ).first()
 
     if existing:
@@ -223,7 +221,7 @@ def delete_songwriter(db: Session, song_id: int) -> Type[Songwriter] | None:
 # SERVICE ----------------------------------------------------------
 def create_service(db: Session, service: ServiceCreate) -> Service | None:
     existing = db.query(Service).filter(
-        Service.id == service.id
+        Service.name == service.name
     ).first()
 
     if existing:
